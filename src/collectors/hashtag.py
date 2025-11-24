@@ -7,7 +7,7 @@ class HashtagCollector:
     def getTopPostsByHashtag(self, hashtag, amount=27):
         """Get top posts for a hashtag"""
         try:
-            # Remove # if provided
+            #Remove # if provided
             hashtag = hashtag.replace('#', '')
             
             medias = self.client.cl.hashtag_medias_top(hashtag, amount)
