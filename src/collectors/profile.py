@@ -13,10 +13,8 @@ class ProfileCollector:
             email = None
             phone = None
             
-            # Try multiple attributes where contact info might be stored
-            # These can appear on business, creator, AND some personal accounts
             
-            # Email attributes
+            #Email attributes
             if hasattr(userInfo, 'public_email') and userInfo.public_email:
                 email = userInfo.public_email
             elif hasattr(userInfo, 'email') and userInfo.email:
@@ -24,7 +22,7 @@ class ProfileCollector:
             elif hasattr(userInfo, 'contact_email') and userInfo.contact_email:
                 email = userInfo.contact_email
                 
-            # Phone attributes
+            #Phone attributes
             if hasattr(userInfo, 'contact_phone_number') and userInfo.contact_phone_number:
                 phone = userInfo.contact_phone_number
             elif hasattr(userInfo, 'public_phone_number') and userInfo.public_phone_number:
@@ -32,7 +30,7 @@ class ProfileCollector:
             elif hasattr(userInfo, 'phone_number') and userInfo.phone_number:
                 phone = userInfo.phone_number
             
-            # Try alternative method using user_info_v1
+            #Try alternative method using user_info_v1
             try:
                 userInfoV1 = self.client.cl.user_info_v1(userID)
                 if not email and hasattr(userInfoV1, 'public_email'):
