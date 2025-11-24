@@ -51,9 +51,9 @@ def profile(username, output):
         console.print(f"[bold red]Error: {data['error']}[/bold red]")
         return
 
-    # Display results in a table
+    #Display results in a table
     table = Table(title=f"Profile: {username}")
-    table.add_column("Field", style="cyan")
+    table.add_column("Info", style="cyan")
     table.add_column("Value", style="magenta")
 
     for key, value in data.items():
@@ -61,7 +61,7 @@ def profile(username, output):
 
     console.print(table)
     
-    # Export if requested
+    #Export if requested
     if output:
         if output.endswith('.json'):
             result = JsonExporter.exportToJson(data, output)
@@ -95,7 +95,7 @@ def media(username, amount, output):
         console.print(f"[bold red]Error: {data['error']}[/bold red]")
         return
 
-    # Display results
+     #display results
     table = Table(title=f"Recent Media: {username}")
     table.add_column("Type", style="cyan")
     table.add_column("Caption", style="white", max_width=40)
@@ -115,7 +115,7 @@ def media(username, amount, output):
     console.print(table)
     console.print(f"\n[dim]Total posts retrieved: {len(data)}[/dim]")
     
-    # Export if requested
+    #Export if requested
     if output:
         if output.endswith('.json'):
             result = JsonExporter.exportToJson(data, output)
@@ -146,7 +146,7 @@ def patterns(username, amount):
         console.print(f"[bold red]Error: {data['error']}[/bold red]")
         return
 
-    # Summary
+    
     console.print("[bold]📊 Posting Pattern Analysis[/bold]\n")
     console.print(f"Posts Analyzed: [cyan]{data['totalAnalyzed']}[/cyan]")
     console.print(f"Most Active Hour: [green]{data['mostActiveHour']}:00[/green]")
@@ -154,7 +154,7 @@ def patterns(username, amount):
     console.print(f"Avg Likes per Post: [yellow]{data['avgLikes']:.1f}[/yellow]")
     console.print(f"Avg Comments per Post: [yellow]{data['avgComments']:.1f}[/yellow]")
     
-    # Hourly distribution
+    #hourly distribution
     console.print("\n[bold]🕐 Hourly Activity:[/bold]")
     hourTable = Table()
     hourTable.add_column("Hour", style="cyan")
@@ -184,7 +184,7 @@ def followers(username, amount, output):
         console.print(f"[bold red]Error: {data['error']}[/bold red]")
         return
 
-    # Display results
+    #Display results
     table = Table(title=f"Followers: {username}")
     table.add_column("Username", style="cyan")
     table.add_column("Full Name", style="white")
@@ -202,7 +202,7 @@ def followers(username, amount, output):
     console.print(table)
     console.print(f"\n[dim]Total followers retrieved: {len(data)}[/dim]")
     
-    # Export if requested
+    #export if requested
     if output:
         if output.endswith('.json'):
             result = JsonExporter.exportToJson(data, output)
@@ -231,7 +231,7 @@ def following(username, amount, output):
         console.print(f"[bold red]Error: {data['error']}[/bold red]")
         return
 
-    # Display results
+    #display results
     table = Table(title=f"Following: {username}")
     table.add_column("Username", style="cyan")
     table.add_column("Full Name", style="white")
@@ -249,7 +249,7 @@ def following(username, amount, output):
     console.print(table)
     console.print(f"\n[dim]Total following retrieved: {len(data)}[/dim]")
     
-    # Export if requested
+    #export if requested
     if output:
         if output.endswith('.json'):
             result = JsonExporter.exportToJson(data, output)
@@ -303,19 +303,19 @@ def hashtag(hashtag, amount, output):
     
     collector = HashtagCollector(client)
     
-    # Get hashtag info
+    #get hashtag info
     info = collector.getHashtagInfo(hashtag)
     if 'error' not in info:
         console.print(f"[dim]Total posts with #{hashtag}: {info['mediaCount']:,}[/dim]\n")
     
-    # Get top posts
+    #get top posts
     data = collector.getTopPostsByHashtag(hashtag, amount)
     
     if isinstance(data, dict) and 'error' in data:
         console.print(f"[bold red]Error: {data['error']}[/bold red]")
         return
 
-    # Display results
+    #display results
     table = Table(title=f"Top Posts: #{hashtag}")
     table.add_column("Username", style="cyan")
     table.add_column("Caption", style="white", max_width=30)
@@ -333,7 +333,7 @@ def hashtag(hashtag, amount, output):
     console.print(table)
     console.print(f"\n[dim]Posts retrieved: {len(data)}[/dim]")
     
-    # Export if requested
+    #export if requested
     if output:
         if output.endswith('.json'):
             result = JsonExporter.exportToJson(data, output)
@@ -365,7 +365,7 @@ def batch(usernames, output):
             results[username] = data
             progress.update(task, advance=1)
     
-    # Display summary
+    #display summary
     table = Table(title="Batch Analysis Results")
     table.add_column("Username", style="cyan")
     table.add_column("Followers", style="green")
@@ -385,7 +385,7 @@ def batch(usernames, output):
 
     console.print(table)
     
-    # Export
+    #export
     result = JsonExporter.exportToJson(results, output)
     if result['success']:
         console.print(f"\n[green]✓ Batch results exported to {result['filename']}[/green]")
