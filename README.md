@@ -4,7 +4,7 @@ A command-line tool for gathering OSINT (Open-Source Intelligence) from Instagra
 
 ---
 
-## 📦 Installation
+## Installation
 
 ### **Prerequisites**
 
